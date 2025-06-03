@@ -1,0 +1,13 @@
+FROM node:23
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+RUN npm install
+
+# 로컬 머ㄴㅔ node_module 이 있다면 여기서 한번 더 이미지에 복사가 되서 중복이 됨 그렇기 때문에ㅔ
+# local 폴더에서는 node_modules 를 굳이 가지고 있을 필요가 없다. 도커 환경에서 할 때는 지워도 된다.
+COPY ./ ./
+
+CMD ["npm", "run" ,"start"]
